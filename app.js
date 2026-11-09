@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const config = require('./config/env');
+const errorMiddleware = require('./middlewares/error.middleware');
 
 const app = express();
 
@@ -16,5 +17,7 @@ app.get('/api/health', (req, res) => {
     message: 'Rental Management API is running.',
   });
 });
+
+app.use(errorMiddleware);
 
 module.exports = app;
